@@ -1,22 +1,19 @@
-import Counter from '../Counter/Counter';
+import Counter from '../CalculatorDisplay.tsx/CalculatorDisplay';
 import './Calculator.css'
 import {RootState} from "../../app/store";
 import {useDispatch, useSelector,} from "react-redux";
-import {addSymbol,deleteSymbol} from "../Counter/counterSlice";
+import {addSymbol,deleteSymbol,getEnter} from "./calculatorSlice";
 
 const Calculator = ()=>{
 
     const dispatch = useDispatch();
     const counterValue = useSelector((state: RootState) => state.counter.value);
-    const getEnter = ()=>{
-        console.log(eval(counterValue))
-    }
 
     return(
         <>
             <div className="calculator-body">
                 <div className="calculator-display">
-                    <Counter></Counter>
+                    <Counter result={counterValue}></Counter>
                 </div>
                 <div className="calculator-buttons">
                     <button className="btn btn-lil" onClick={() => {dispatch(addSymbol('+'))}}>+</button>
@@ -34,7 +31,7 @@ const Calculator = ()=>{
                     <button className="btn" onClick={() => {dispatch(addSymbol('9'))}}>9</button>
                     <button className="btn" onClick={() => {dispatch(deleteSymbol())}}>Delete</button>
                     <button className="btn" onClick={() => {dispatch(addSymbol('0'))}}>0</button>
-                    <button className="btn" onClick={getEnter}>Enter</button>
+                    <button className="btn" onClick={() => {dispatch(getEnter())}}>Enter</button>
                 </div>
             </div>
         </>
