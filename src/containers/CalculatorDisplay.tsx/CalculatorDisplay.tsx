@@ -1,3 +1,5 @@
+import '../Calculator/Calculator.css'
+
 interface Props{
   result: string
 }
@@ -5,7 +7,7 @@ interface Props{
 const Counter:React.FC<Props> = ({result}) => {
   return (
     <>
-    <h3 style={{textAlign: "center"}}>{result}</h3>
+    <h3 className="result">{result}</h3>
     </>
   );
 
